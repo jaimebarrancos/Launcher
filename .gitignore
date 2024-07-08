@@ -1,0 +1,14 @@
+# DFX build directory
+/.dfx/
+
+# Node modules
+/node_modules/
+
+# Environment files
+.env
+
+src/test_frontend/node_modules
+src/test_frontend/svelte-kit/
+src/declarations
+
+candid
