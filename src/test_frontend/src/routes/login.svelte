@@ -3,23 +3,24 @@
   import { onMount } from "svelte";
 
   //authenticating
-  import { Actor, HttpAgent } from "@dfinity/agent";
-  import { principal, authClient, initAuthClient, hasPaid } from './stores/ledger';
+  import { loggedIn, principal, authClient, initAuthClient, hasPaid } from "./stores/ledger";
 
-  import { deployer } from "$lib/canisters";
-
-
+  //functions
   onMount(async () => {
     await initAuthClient();
     hasPaid.set(false);
   });
 
-  async function updateIdentity() {
-    const principalId = $authClient.getIdentity().getPrincipal().toText();
+  async function logInSuccess() {
+    loggedIn.set(true);
+    principal.set($authClient.getIdentity().getPrincipal().toText());
+  }
 
-    Actor.agentOf(deployer).replaceIdentity(client.getIdentity());
-
-    principal.set(principalId);
+  function displayPrincipalShort(principal) {
+    if (principal.length > 10) {
+      return `${principal.substring(0, 5)}...${principal.substring(principal.length - 5)}`;
+    }
+    return principal;
   }
 
   onMount(() => {
@@ -35,7 +36,7 @@
 
       client.login({
         identityProvider,
-        onSuccess: updateIdentity,
+        onSuccess: logInSuccess,
         windowOpenerFeatures: `
           left=${window.screen.width / 2 - 525 / 2},
           top=${window.screen.height / 2 - 705 / 2},
@@ -48,17 +49,20 @@
       .getElementById("login")
       ?.addEventListener("click", handleLoginClick);
   });
-
-  function showPrincipal() {
-    principal.set($authClient.getIdentity().getPrincipal().toText());
-    console.log($principal)
-  }
 </script>
 
 <main>
-  <div class="lg:flex lg:flex-1 lg:justify-end">
-    <button id="login" href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></button>
-</div>
-  <button on:click={showPrincipal}>set Principal</button>
-
+  {#if $loggedIn}
+    <div>{displayPrincipalShort($principal)}</div>
+  {:else}
+    <div class="lg:flex lg:flex-1 lg:justify-end">
+      <button
+        id="login"
+        href="#"
+        class="text-sm font-semibold leading-6 text-gray-900"
+        >Log in <span aria-hidden="true">&rarr;</span></button
+      >
+    </div>
+  {/if}
+  <!-- <button on:click={showPrincipal}>set Principal</button> -->
 </main>

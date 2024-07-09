@@ -1,0 +1,11 @@
+{
+  "test_frontend": {
+    "ic": "32sks-dqaaa-aaaan-qmpwq-cai"
+  },
+  "deployer": {
+    "ic": "35tmg-oiaaa-aaaan-qmpwa-cai"
+  },
+  "dao": {
+    "ic": "zer6i-tqaaa-aaaap-qhoaq-cai"
+  }
+}

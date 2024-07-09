@@ -8,6 +8,7 @@ import Error "mo:base/Error";
 import ICRaw "mo:base/ExperimentalInternetComputer";
 import List "mo:base/List";
 import Time "mo:base/Time";
+import Debug "mo:base/Debug";
 import Types "./types";
 
 shared actor class DAO(init : Types.BasicDaoStableStorage) = Self {
@@ -15,7 +16,7 @@ shared actor class DAO(init : Types.BasicDaoStableStorage) = Self {
     stable var proposals = Types.proposals_fromArray(init.proposals);
     stable var next_proposal_id : Nat = 0;
     stable var system_params : Types.SystemParams = init.system_params;
-
+    stable var minter_canister : Principal = Principal.fromText("bd3sg-teaaa-aaaaa-qaaba-cai");
     system func heartbeat() : async () {
         await execute_accepted_proposals();
     };
@@ -29,9 +30,11 @@ shared actor class DAO(init : Types.BasicDaoStableStorage) = Self {
         proposals := Trie.put(proposals, Types.proposal_key(id), Nat.equal, proposal).0;
     };
 
+
     // mint 1 token to the new account
     public shared ({caller}) func mint(to : Principal) : async Types.Result<(), Text> {
-        if (caller != Principal.fromText("bw4dl-smaaa-aaaaa-qaacq-cai")) {
+
+        if (caller != minter_canister) {
             return #err("Only the deployer can mint tokens");
         };
         accounts := Trie.put(accounts, Types.account_key(to), Principal.equal, Types.oneToken).0;

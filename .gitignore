@@ -8,7 +8,9 @@
 .env
 
 src/test_frontend/node_modules
-src/test_frontend/svelte-kit/
+src/test_frontend/.svelte-kit/
+src/test_frontend/dist/
+
 src/declarations
 
 candid

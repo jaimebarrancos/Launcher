@@ -5,25 +5,27 @@
 	<meta charset="utf-8" />
 	<link rel="icon" href="./favicon.ico" />
 	<meta name="viewport" content="width=device-width" />
-	<title>IC Hello Starter</title>
+	<title>Launcher</title>
 	
-		<link rel="modulepreload" href="./_app/immutable/entry/start.7579ba08.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.63274e7e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.84058b3c.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.35a173b3.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.3060b3f6.js">
+		<link href="./_app/immutable/assets/2.d06c6180.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.2a34ef28.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.a75471c3.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.36f371df.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.be95db26.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.84b65ae5.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.a4192956.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.e159bb4a.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.58be68c5.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.391a2521.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.3025f2c4.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.60074037.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.6831a90a.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.85565215.js">
 </head>
 
 <body data-sveltekit-preload-data="hover">
-	<div style="display: contents">  <main><img src="/logo2.svg" alt="DFINITY logo"> <br> <br> <div><button id="test" data-svelte-h="svelte-dyl8ha">call ledger</button></div> <div data-svelte-h="svelte-lxbw5v"><button id="login">Log me in</button></div> <div id="principalId"></div> <button data-svelte-h="svelte-tk882g">Show Principal</button> <section></section></main> 
+	<div style="display: contents">  <main><div class="bg-white"><header class="absolute inset-x-0 top-0 z-50"><div><nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global"><div class="lg:flex lg:gap-x-12" data-svelte-h="svelte-1adl7hb"><a href="https://github.com/jaimebarrancos/Launcher" class="text-sm font-semibold leading-6 text-gray-900">Github</a></div> <main><div class="lg:flex lg:flex-1 lg:justify-end" data-svelte-h="svelte-1tmezk8"><button id="login" href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">→</span></button></div> <button data-svelte-h="svelte-1mwtrgz">set Principal</button></main></nav></div></header> <div class="relative isolate px-6 pt-14 lg:px-8"><div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true" data-svelte-h="svelte-ghwbxl"><div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#9fff32] to-[#9fff32] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div></div> <div class="relative isolate px-6 pt-14 lg:px-8"><div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56"><div class="text-center"><h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl" data-svelte-h="svelte-1elozwb">Launcher</h1> <p class="mt-6 text-lg leading-8 text-gray-600" data-svelte-h="svelte-2ufbvb">Enter the future.</p> <p></p> <div class="mt-10 flex items-center justify-center gap-x-6"><div><button class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" data-svelte-h="svelte-ubr06v">Enter</button></div> </div></div></div></div> <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true" data-svelte-h="svelte-9jtjrb"><div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#9fff32] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div></div></div></div> </main> 
 			
 			<script>
 				{
-					__sveltekit_1eakljk = {
+					__sveltekit_54lnro = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -33,8 +35,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.7579ba08.js"),
-						import("./_app/immutable/entry/app.3060b3f6.js")
+						import("./_app/immutable/entry/start.2a34ef28.js"),
+						import("./_app/immutable/entry/app.84b65ae5.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],

@@ -6,7 +6,7 @@ function dummyActor() {
 }
 
 const buildingOrTesting = building || process.env.NODE_ENV === "test";
-
+console.log("canisterID", canisterId);
 export const deployer = buildingOrTesting
     ? dummyActor()
     : createActor(canisterId);

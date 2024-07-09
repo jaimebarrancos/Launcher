@@ -4,8 +4,9 @@ import Blob "mo:base/Blob";
 import Text "mo:base/Text";
 import types "./types";
 import ManagementInterface "ic-management-interface";
-import LedgerInterface "./ic-ledger-interface";
+import LedgerInterface "ic-ledger-interface";
 import Principal "mo:base/Principal";
+import Debug "mo:base/Debug";
 
 actor Deployer {
 
@@ -18,39 +19,42 @@ actor Deployer {
     // ------- variable declarations -------
     let registry : Registry = actor ("avqkn-guaaa-aaaaa-qaaea-cai");
     let management : ManagementInterface.Self = actor("aaaaa-aa");
-    let ledger : LedgerInterface.Self = actor("aaaaa-aa");
+    let ledger : LedgerInterface.Self = actor("ryjl3-tyaaa-aaaaa-aaaba-cai");
+    let dao : Dao = actor ("bkyz2-fmaaa-aaaaa-qaaaq-cai");
 
-    let dao : Dao = actor ("br5f7-7uaaa-aaaaa-qaaca-cai");
+    let icpFee : Nat = 1;
     let fee : Nat = 1_000_000_000; // in cycles
-    var launched = 0;
+    var peopleLaunched : Nat = 0;
+    
     // ------- functions -------
 
     // log the amount of created people
-    public func reboot_amountOfPeople() : async Nat {
-        return launched;
+    public func reboot_launcher_amountOfPeople() : async Nat {
+        return peopleLaunched;
     };
 
     public shared ({caller}) func getPrincipal() : async Text {
         return "Your PrincipalId is: " # Principal.toText(caller);
     };
 
-    public shared ({caller}) func reboot_deployYou(name : Text) : async Result<Principal, Text> {
-        launched += 1;
+    public shared ({caller}) func reboot_launcher_deployYou(name : Text) : async Result<Principal, Text> {
+        peopleLaunched += 1;
+
         switch (await ledger.icrc2_transfer_from({
                 spender_subaccount = null;
                 from = {owner = caller; subaccount = null};
                 to = {owner = Principal.fromActor(Deployer); subaccount = null};
-                amount = 5;
-                spender = dao;
+                amount = icpFee;
                 fee = null;
                 memo = null;
                 created_at_time = null;
             })) {
             case (#Ok(_)) {};
-            case (#Err(err)) {
+            case (err) {
                 return #err("Failed to transfer token.");
             };
         };
+        Debug.print("finished transfer");
 
         //transfer one token to the new user
         switch (await dao.mint(caller)) {
@@ -99,7 +103,7 @@ actor Deployer {
     };
 
 
-    public shared func reboot_deployModule(name : Text, version : Text) : async Result<(), WriteError> {
+    public shared func reboot_launcher_deployModule(name : Text, version : Text) : async Result<(), WriteError> {
         let availableCycles = Cycles.available();
         let acceptedCycles = Cycles.accept<system>(availableCycles);
         if (acceptedCycles < fee) {

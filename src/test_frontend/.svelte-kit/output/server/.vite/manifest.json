@@ -57,7 +57,14 @@
     "isEntry": true,
     "src": "src/routes/+layout.js"
   },
+  "src/routes/+page.css": {
+    "file": "_app/immutable/assets/_page.d06c6180.css",
+    "src": "src/routes/+page.css"
+  },
   "src/routes/+page.svelte": {
+    "css": [
+      "_app/immutable/assets/_page.d06c6180.css"
+    ],
     "file": "entries/pages/_page.svelte.js",
     "imports": [
       "_ssr.js",

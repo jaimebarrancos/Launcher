@@ -8,16 +8,17 @@
       "main": "src/main.mo",
       "type": "motoko"
     },
-    "launcher": {
+    "test_frontend": {
       "dependencies": [
         "deployer"
       ],
       "source": [
-        "src/launcher_frontend/dist"
+        "src/test_frontend/dist"
       ],
       "type": "assets",
-      "workspace": "launcher_frontend"
+      "workspace": "test_frontend"
     },
+
     "nns-cycles-minting": {
       "build": "",
       "candid": "candid/nns-cycles-minting.did",
@@ -117,16 +118,7 @@
     "registry": {
       "main": "src/registry.mo",
       "type": "motoko"
-    },
-    "test_frontend": {
-      "dependencies": [
-        "deployer"
-      ],
-      "source": [
-        "src/test_frontend/dist"
-      ],
-      "type": "assets",
-      "workspace": "test_frontend"
     }
+
   }
 }
