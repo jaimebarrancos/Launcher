@@ -1,6 +1,7 @@
 <script>
   //svelte
   import { onMount } from "svelte";
+  import { Principal } from "@dfinity/principal";
 
   //authenticating
   import { loggedIn, principal, authClient, initAuthClient, hasPaid } from "./stores/ledger";
@@ -49,6 +50,7 @@
       .getElementById("login")
       ?.addEventListener("click", handleLoginClick);
   });
+
 </script>
 
 <main>

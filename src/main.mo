@@ -17,13 +17,13 @@ actor Deployer {
     type Dao = types.Dao;
 
     // ------- variable declarations -------
-    let registry : Registry = actor ("avqkn-guaaa-aaaaa-qaaea-cai");
+    let registry : Registry = actor ("vh5c6-zyaaa-aaaas-aaawa-cai");
     let management : ManagementInterface.Self = actor("aaaaa-aa");
     let ledger : LedgerInterface.Self = actor("ryjl3-tyaaa-aaaaa-aaaba-cai");
-    let dao : Dao = actor ("bkyz2-fmaaa-aaaaa-qaaaq-cai");
+    let dao : Dao = actor ("zer6i-tqaaa-aaaap-qhoaq-cai");
 
-    let icpFee : Nat = 1;
-    let fee : Nat = 1_000_000_000; // in cycles
+    let icpFee : Nat = 1_000_000; // 8 decimals
+    let fee : Nat = 500_000_000_000; // in cycles
     var peopleLaunched : Nat = 0;
     
     // ------- functions -------
@@ -65,14 +65,14 @@ actor Deployer {
         };
 
         // get module
-        let mod = switch (await registry.reboot_registry_getModule("you", "0")) {
+        let mod = switch (await registry.reboot_registry_getModule("you", "0.5")) {
             case (#ok(mod)) {mod};
             case (#err(err)) {
                 return #err(err);
             };
         };
 
-        Cycles.add<system>(1_000_000_000_000);
+        Cycles.add<system>(fee);
 
         // create canister
         let canister_id = try {
@@ -83,7 +83,7 @@ actor Deployer {
 
         try {
             await management.install_code({
-                arg = Blob.toArray(to_candid (name));
+                arg = Blob.toArray(to_candid (name, caller));
                 wasm_module = Blob.toArray(mod.wasm);
                 mode = #install;
                 canister_id = canister_id.canister_id;
