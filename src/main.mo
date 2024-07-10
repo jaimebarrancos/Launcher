@@ -65,7 +65,7 @@ actor Deployer {
         };
 
         // get module
-        let mod = switch (await registry.reboot_registry_getModule("you", "0.5")) {
+        let mod = switch (await registry.reboot_registry_getModule("you", "0.6")) {
             case (#ok(mod)) {mod};
             case (#err(err)) {
                 return #err(err);
